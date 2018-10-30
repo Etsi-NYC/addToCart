@@ -4,7 +4,10 @@ import axios from 'axios';
 import Buttons from './components/Buttons.jsx';
 import Item from './components/Item.jsx';
 import Overview from './components/Overview.jsx';
-
+import styled from 'styled-components';
+const StyledApp = styled.div`
+  font-family: 'Roboto', sans-serif;
+`;
 
 
 class App extends React.Component {
@@ -20,34 +23,32 @@ class App extends React.Component {
 
   componentDidMount() {
     var id = window.location.pathname.split('/')[2];
-    this.setState({ id: id }, () => this.getItemStoreDetails(this.state.id));
+    this.getItemStoreDetails(id);
+
   }
 
   getItemStoreDetails(id) {
-    // console.log(id, 'IDDDD')
     axios.get('/listings', { params: { id } })
       .then(response => {
-        // console.log('response', response);
         this.setState({ details: response.data }, () => {
-          console.log('this state detail;', this.state.details)
+          console.log('details', this.state.details);
         })
       })
       .catch(err => {
-        console.log('err when getting overview', err)
+        console.log('err when getting item details and store details', err)
       })
   }
 
 
   render() {
     return (
-      <div className="app">
+      <StyledApp className="app">
         <div className="main">
-          {/* <Item details={this.state.details} /> */}
-          {/* <AskQuestionButton /> */}
+          <Item details={this.state.details} />
           {/* <Buttons details={this.state.details} /> */}
-          <Overview nonsense={this.state.details} />
+          <Overview details={this.state.details} />
         </div>
-      </div>
+      </StyledApp>
     );
   }
 

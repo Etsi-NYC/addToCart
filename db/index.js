@@ -41,10 +41,10 @@ var Store = mongoose.model('Store', shopSchema);
 var Listing = mongoose.model('Listing', listingSchema);
 
 let findListing = (id, cb) => {
-  console.log('this is the id we searching for in DB   ', id);
+  // console.log('this is the id we searching for in DB   ', id);
   Listing.find({ listing_id: id }, (err, data) => {
     if (err) {
-      // console.log('cant get listing form DB', err);
+      console.log('could not get listing details from DB', err);
       cb(err, null);
     } else {
       cb(null, data);
@@ -55,7 +55,7 @@ let findListing = (id, cb) => {
 let findShop = (id, cb) => {
   Store.find({ shop_id: id }, (err, data) => {
     if (err) {
-      console.log('cant get store details from DB', err);
+      console.log('could not get store details from DB', err);
       cb(err, null);
     } else {
       cb(null, data);
