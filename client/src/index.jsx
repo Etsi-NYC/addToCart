@@ -5,9 +5,7 @@ import Buttons from './components/Buttons.jsx';
 import Item from './components/Item.jsx';
 import Overview from './components/Overview.jsx';
 import styled from 'styled-components';
-const StyledApp = styled.div`
-  font-family: 'Roboto', sans-serif;
-`;
+
 
 
 class App extends React.Component {
@@ -42,13 +40,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <StyledApp className="app">
+      <div className="app">
         <div className="main">
           <Item details={this.state.details} />
           {/* <Buttons details={this.state.details} /> */}
           <Overview details={this.state.details} />
         </div>
-      </StyledApp>
+      </div>
     );
   }
 
